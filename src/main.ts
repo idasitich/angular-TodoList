@@ -15,11 +15,13 @@ import { bootstrapApplication } from '@angular/platform-browser';
     </div>
   <input #val type="text" id="input" (input)="onInput(val.value)" > 
   <button (click)="addMember()" id="add">add</button>
+  <p style="color:red">{{error}}</p>
   `,
 })
 export class App {
   name = 'Angular';
   newMember: string = '';
+  error : string ='';
   members: string[] = [];
 
   onInput(value: string) {
@@ -28,9 +30,10 @@ export class App {
   }
   addMember = () => {
     if (!this.newMember) {
-      alert('the data can not empty');
+     this.error="data cant empty"
     }else{
     +this.members.push(this.newMember);
+    this.error="";
     console.log(this.members);
     }
   };

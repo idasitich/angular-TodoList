@@ -10,12 +10,11 @@ import { bootstrapApplication } from '@angular/platform-browser';
   template: `
   <div id="Container">
   <ol id ="list">
-  <li *ngFor="let member of members">{{member}}</li>
+  <li *ngFor="let member of members">{{member + " "}}<button (click)="clear()" id="clear">delete</button></li>
   </ol>
     </div>
   <input #val type="text" id="input" (input)="onInput(val.value)" > 
   <button (click)="addMember()" id="add">add</button>
-  <button (click)="clear()" id="clear">delete</button>
   `,
 })
 export class App {
@@ -28,8 +27,12 @@ export class App {
     console.log(value);
   }
   addMember = () => {
+    if (!this.newMember) {
+      alert('the data can not empty');
+    }else{
     +this.members.push(this.newMember);
     console.log(this.members);
+    }
   };
 
   clear = () => {
